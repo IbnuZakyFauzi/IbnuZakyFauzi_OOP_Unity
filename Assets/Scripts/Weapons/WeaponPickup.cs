@@ -1,26 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
-{
+public class WeaponPickup : MonoBehaviour{
     [SerializeField] private Weapon weaponHolder;
     private Weapon weapon;
 
-    void Awake()
-    {
-        if (weaponHolder != null)
-        {
+    void Awake(){
+        if(weaponHolder != null){
             weapon = Instantiate(weaponHolder);
         }
     }
 
-    void Start()
+void Start()
     {
         if (weapon != null)
         {
             // Initialize all related methods with false
             TurnVisual(false);
             weapon.transform.SetParent(transform, false);
-            weapon.transform.localPosition = new Vector3(transform.position.x, transform.position.y, 0); // Set z to 0
+            weapon.transform.localPosition = transform.position;
             weapon.parentTransform = transform;
         }
     }
@@ -34,18 +33,19 @@ public class WeaponPickup : MonoBehaviour
             if (currentWeapon != null)
             {
                 currentWeapon.transform.SetParent(currentWeapon.parentTransform);
-                currentWeapon.transform.localPosition = new Vector3(0, 0, 0); // Set z to 0
+                currentWeapon.transform.localPosition = Vector3.zero;
                 TurnVisual(false, currentWeapon);
             }
 
             // Assign the new weapon to the player
             weapon.transform.SetParent(other.transform);
-            weapon.transform.localPosition = new Vector3(0, -0.05f, 0); // Set z to 0 explicitly
+            weapon.transform.localPosition = new Vector3(0, -0.05f, 0);
             TurnVisual(true);
+
         }
     }
 
-    void TurnVisual(bool state)
+void TurnVisual(bool state)
     {
         if (weapon != null)
         {
