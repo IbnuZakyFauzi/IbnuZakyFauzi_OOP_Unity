@@ -1,34 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Singleton instance
     public static GameManager Instance { get; private set; }
-    
-    // Reference to LevelManager
+
     public LevelManager LevelManager { get; private set; }
 
-    private void Awake()
+    void Awake()
     {
-        // Implement singleton pattern
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this);
+            return;
+        }
 
-            // Find LevelManager in the scene or create one if it doesn't exist
-            LevelManager = FindObjectOfType<LevelManager>();
-            if (LevelManager == null)
-            {
-                GameObject levelManagerObject = new GameObject("LevelManager");
-                LevelManager = levelManagerObject.AddComponent<LevelManager>();
-            }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+
+        LevelManager = GetComponentInChildren<LevelManager>();
+
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(GameObject.Find("Camera"));
     }
 }
