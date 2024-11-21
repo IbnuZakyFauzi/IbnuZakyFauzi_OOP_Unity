@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &636266846207248517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1743968575982947149}
-  m_Layer: 0
-  m_Name: BulletSpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1743968575982947149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636266846207248517}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.96, z: 9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2643154102498143510}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7541458749971243854
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5546667055270891161}
-  - {fileID: 1743968575982947149}
+  - {fileID: 2778170571569881568}
+  - {fileID: 4704996131045024070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6568404969748735997
@@ -153,10 +122,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootIntervalInSeconds: 0.1
-  bullet: {fileID: 7367095857074826376}
-  bulletSpawnPoint: {fileID: 2643154102498143510}
-  parentTransform: {fileID: 1743968575982947149}
---- !u!1001 &4841970153930466391
+  bullet: {fileID: 2670366939169409247, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
+  bulletSpawnPoint: {fileID: 4704996131045024070}
+  parentTransform: {fileID: 0}
+--- !u!1 &7801997818179652309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4704996131045024070}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4704996131045024070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801997818179652309}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.66, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2643154102498143510}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2973942651432520494
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,19 +213,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
---- !u!4 &5546667055270891161 stripped
+--- !u!4 &2778170571569881568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
-  m_PrefabInstance: {fileID: 4841970153930466391}
+  m_PrefabInstance: {fileID: 2973942651432520494}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7367095857074826376 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2670366939169409247, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
-  m_PrefabInstance: {fileID: 4841970153930466391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cc629aec9c4da4fa0fb2124a1059e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

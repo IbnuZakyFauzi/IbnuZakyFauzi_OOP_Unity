@@ -5,6 +5,11 @@ using UnityEngine;
          public Transform player;
          public float speed = 5f;
 
+        protected override void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
          private void Update()
          {
              if (player != null)

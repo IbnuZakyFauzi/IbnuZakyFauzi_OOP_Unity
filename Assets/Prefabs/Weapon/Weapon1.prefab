@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4490548753409276467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootIntervalInSeconds: 0.1
-  bullet: {fileID: 6020130764647680077}
-  bulletSpawnPoint: {fileID: 3812222078968464643}
-  parentTransform: {fileID: 7782504451599657636}
+  bullet: {fileID: 2670366939169409247, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
+  bulletSpawnPoint: {fileID: 7782504451599657636}
+  parentTransform: {fileID: 0}
 --- !u!1001 &8540163677433233554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,17 +213,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
---- !u!114 &6020130764647680077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2670366939169409247, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
-  m_PrefabInstance: {fileID: 8540163677433233554}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cc629aec9c4da4fa0fb2124a1059e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8741306428234607196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1138173204898589390, guid: f2a5507c6c7a1bc45b66335e4ed1cd24, type: 3}
