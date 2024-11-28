@@ -1,60 +1,58 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class CombatManager : MonoBehaviour
 {
-    public EnemySpawner[] enemySpawners; // Daftar EnemySpawner dalam gim
-    public float timer = 0f; // Timer untuk wave
-    [SerializeField] private float waveInterval = 5f; // Interval antar wave
-    public int waveNumber = 1; // Nomor wave saat ini
-    public int totalEnemies = 0; // Total musuh dalam wave ini
+    public EnemySpawner[] enemySpawners;
+    public float timer = 0;
+    [SerializeField] private float waveInterval = 5f;
+    public int waveNumber = 0;
+    public int totalEnemies = 0;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        StartWave(); // Memulai wave pertama
-    }
 
-    private void Update()
-    {
-        timer += Time.deltaTime;
-
-        if (timer >= waveInterval && AllEnemiesDefeated())
+        waveNumber = 0;
+        foreach (EnemySpawner enemySpawner in enemySpawners)
         {
-            timer = 0f;
-            StartWave();
+            enemySpawner.combatManager = this;
         }
     }
 
-    private bool AllEnemiesDefeated()
+    // Update is called once per frame
+    void Update()
     {
-        foreach (var spawner in enemySpawners)
+
+
+        if (totalEnemies <= 0)
         {
-            if (spawner.spawnCount > spawner.totalKill)
-                return false; // Masih ada musuh yang belum dikalahkan
+            timer += Time.deltaTime;
+            if (timer >= waveInterval)
+            {
+                timer = 0;
+                StartNextWave();
+            }
         }
-        return true;
     }
 
-    private void StartWave()
+    private void StartNextWave()
     {
+
+        timer = 0;
         waveNumber++;
-        Debug.Log($"Wave {waveNumber} started!");
-
-        foreach (var spawner in enemySpawners)
+        // Debug.Log("Starting wave " + waveNumber);
+        foreach (EnemySpawner enemySpawner in enemySpawners)
         {
-            spawner.defaultSpawnCount = waveNumber; // Meningkatkan jumlah spawn sesuai wave
-            spawner.StartSpawning(); // Memulai spawning musuh
+            Debug.Log("Starting enemy spawner");
+            enemySpawner.startSpawning();
         }
-
-        totalEnemies = CalculateTotalEnemies();
     }
 
-    private int CalculateTotalEnemies()
+    public void onDeath()
     {
-        int total = 0;
-        foreach (var spawner in enemySpawners)
-        {
-            total += spawner.defaultSpawnCount * spawner.spawnCountMultiplier;
-        }
-        return total;
+        totalEnemies--;
     }
 }

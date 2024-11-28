@@ -16,7 +16,7 @@ public class EnemyBoss : Enemy
         float spawnSide = Random.Range(0, 2) == 0 ? -1f : 1f;
         direction = new Vector2(spawnSide, 0);
 
-        transform.position = new Vector3(spawnSide * 10, Random.Range(0f, 5f), 0);
+        transform.position = new Vector3(spawnSide * 10, Random.Range(-1f, 5f), 0);
         rb.velocity = direction * speed;
     }
 

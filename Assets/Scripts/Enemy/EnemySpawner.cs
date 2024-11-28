@@ -1,68 +1,106 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Prefabs")]
-    public Enemy spawnedEnemy; // Referensi prefab enemy yang akan di-spawn
+    public Enemy spawnedEnemy;
 
-    [SerializeField] private int minimumKillsToIncreaseSpawnCount = 3; // Minimum kill untuk menaikkan jumlah spawn
-    public int totalKill = 0; // Total kill global
-    private int totalKillWave = 0; // Kill per wave
 
-    [SerializeField] private float spawnInterval = 3f; // Waktu antar spawn
+    [SerializeField] private int minimumKillsToIncreaseSpawnCount = 3;
+    public int totalKill = 0;
+    private int totalKillWave = 0;
+
+
+    [SerializeField] private float spawnInterval = 3f;
+
 
     [Header("Spawned Enemies Counter")]
-    public int spawnCount = 0; // Jumlah enemy yang telah di-spawn
-    public int defaultSpawnCount = 1; // Default jumlah enemy per spawn
-    public int spawnCountMultiplier = 1; // Pengali jumlah spawn
-    public int multiplierIncreaseCount = 1; // Kenaikan multiplier
+    public int spawnCount = 0;
+    public int defaultSpawnCount = 1;
+    public int spawnCountMultiplier = 1;
+    public int multiplierIncreaseCount = 1;
 
-    public CombatManager combatManager; // Referensi ke CombatManager
 
-    public bool isSpawning = false; // Status apakah spawner aktif
+    public CombatManager combatManager;
 
-    private void Start()
+
+    public bool isSpawning = false;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        StartSpawning(); // Memulai proses spawning saat game dimulai
+        spawnCount = defaultSpawnCount;
     }
 
-    private void Update()
-    {
-        if (!isSpawning) return;
-
-        if (combatManager != null && totalKillWave >= minimumKillsToIncreaseSpawnCount)
-        {
-            spawnCountMultiplier += multiplierIncreaseCount;
-            totalKillWave = 0; // Reset kill per wave
-        }
-    }
-
-    public void StartSpawning()
-    {
-        isSpawning = true;
-        InvokeRepeating(nameof(SpawnEnemies), 0, spawnInterval);
-    }
-
-    public void StopSpawning()
+    public void stopSpawning()
     {
         isSpawning = false;
-        CancelInvoke(nameof(SpawnEnemies));
     }
 
-    private void SpawnEnemies()
+    public void startSpawning()
     {
-        int enemiesToSpawn = defaultSpawnCount * spawnCountMultiplier;
-
-        for (int i = 0; i < enemiesToSpawn; i++)
+        if (spawnedEnemy.Level <= combatManager.waveNumber)
         {
-            Instantiate(spawnedEnemy);
-            spawnCount++;
+            isSpawning = true;
+            StartCoroutine(SpawnEnemies());
         }
     }
 
-    public void RegisterKill()
+    // Update is called once per frame
+    void Update()
     {
-        totalKill++;
-        totalKillWave++;
+
     }
+
+    public IEnumerator SpawnEnemies()
+    {
+        if (isSpawning)
+        {
+            if (spawnCount == 0)
+            {
+                spawnCount = defaultSpawnCount;
+            }
+            int i = spawnCount;
+            while (i > 0)
+            {
+
+                Enemy enemy = Instantiate(spawnedEnemy);
+                enemy.GetComponent<Enemy>().enemySpawner = this;
+                enemy.GetComponent<Enemy>().combatManager = combatManager;
+                --i;
+                spawnCount = i;
+                if (combatManager != null)
+                {
+                    combatManager.totalEnemies++;
+                }
+
+                yield return new WaitForSeconds(spawnInterval);
+            }
+        }
+
+    }
+
+    public void onDeath()
+    {
+        Debug.Log("Enemy Killed");
+        // Call this method when an enemy is killed
+        totalKill++;
+        ++totalKillWave;
+        Debug.Log(totalKillWave);
+
+        // Check if totalKillWave has reached the minimumKillsToIncreaseSpawnCount
+        if (totalKillWave == minimumKillsToIncreaseSpawnCount)
+        {
+            Debug.Log("Increasing spawn count");
+            totalKillWave = 0; // Reset totalKillWave for the new wave
+            defaultSpawnCount *= spawnCountMultiplier; // Increase defaultSpawnCount
+            if (spawnCountMultiplier < 3)
+                spawnCountMultiplier += multiplierIncreaseCount; // Increase the multiplier
+            spawnCount = defaultSpawnCount; // Update spawnCount
+        }
+    }
+
+
 }

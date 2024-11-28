@@ -4,7 +4,6 @@ public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     private int health;
-
     private void Awake()
     {
         health = maxHealth;
@@ -20,7 +19,8 @@ public class HealthComponent : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-            Destroy(gameObject); // Menghancurkan objek ketika health <= 0
+            Destroy(gameObject);
+//            totalKill++;
         }
     }
 }

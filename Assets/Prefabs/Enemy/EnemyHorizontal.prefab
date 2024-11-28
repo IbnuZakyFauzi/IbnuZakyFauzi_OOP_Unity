@@ -165,7 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54a091d401a2164797d324abe65a816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
+  Level: 1
+  enemySpawner: {fileID: 272928479685912383, guid: 12c79dc6c16a22c418bda1ac6a486aba, type: 3}
+  combatManager: {fileID: 6456426447919006129, guid: b749cde5dc6b58b4ea6ab707931faaec, type: 3}
   speed: 3
 --- !u!114 &8496606425432541188
 MonoBehaviour:
@@ -180,7 +182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
-  damage: 10
 --- !u!114 &6311218275841713367
 MonoBehaviour:
   m_ObjectHideFlags: 0

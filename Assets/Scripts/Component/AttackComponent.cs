@@ -4,7 +4,6 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour
 {
     [SerializeField] private Bullet bulletPrefab;
-    [SerializeField] private int damage = 10;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

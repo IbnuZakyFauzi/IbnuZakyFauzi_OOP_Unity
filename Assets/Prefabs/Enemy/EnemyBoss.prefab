@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
-  damage: 10
 --- !u!1 &2744097072264466417
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,10 +365,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43122aa14cca34349872f84a020792f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
+  Level: 4
+  enemySpawner: {fileID: 0}
+  combatManager: {fileID: 6456426447919006129, guid: b749cde5dc6b58b4ea6ab707931faaec, type: 3}
   bossWeapon: {fileID: 8514313497429750322, guid: dc370f44f28c0bf45906890f155f5a4a, type: 3}
   attackInterval: 3
-  speed: 3
+  speed: 2
 --- !u!114 &949443632145504566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
-  damage: 10
 --- !u!114 &5274638861590385228
 MonoBehaviour:
   m_ObjectHideFlags: 0

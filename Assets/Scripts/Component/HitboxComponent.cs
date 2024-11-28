@@ -5,7 +5,6 @@ public class HitboxComponent : MonoBehaviour
 {
     [SerializeField] private HealthComponent healthComponent;
     private HealthComponent health;
-
     private void Awake()
     {
         if (healthComponent == null)
